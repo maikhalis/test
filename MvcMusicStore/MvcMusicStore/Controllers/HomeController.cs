@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcMusicStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace MvcMusicStore.Controllers
 {
     public class HomeController : Controller
     {
+        private MusicStoreDB db = new MusicStoreDB();
+
         public ActionResult Index()
         {
             return View();
@@ -25,6 +28,14 @@ namespace MvcMusicStore.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult DailyDeal()
+        {
+            var album = db.Albums.First();
+            album.Price *= 0.5m;
+            return PartialView("DailyDeal", album);
+
         }
     }
 }

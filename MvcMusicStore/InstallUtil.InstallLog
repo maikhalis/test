@@ -1,0 +1,17 @@
+﻿
+Exécution d'une installation traitée avec transaction.
+
+Début de la phase d'installation de l'installation.
+Consultez le contenu du fichier journal pour l'avancement de l'assembly C:\Users\mcastelli.DIGITICK_MARS\Source\Repos\NewRepo\MvcMusicStore\WinService\bin\Debug\WinService.exe.
+Le fichier se trouve à C:\Users\mcastelli.DIGITICK_MARS\Source\Repos\NewRepo\MvcMusicStore\WinService\bin\Debug\WinService.InstallLog.
+
+Une exception s'est produite lors de la phase d'installation.
+System.Security.SecurityException: La source est introuvable mais certains ou l'ensemble des journaux des événements n'ont pas pu faire l'objet d'une recherche. Journaux inaccessibles : Security.
+
+La phase de restauration de l'installation a commencé.
+Consultez le contenu du fichier journal pour l'avancement de l'assembly C:\Users\mcastelli.DIGITICK_MARS\Source\Repos\NewRepo\MvcMusicStore\WinService\bin\Debug\WinService.exe.
+Le fichier se trouve à C:\Users\mcastelli.DIGITICK_MARS\Source\Repos\NewRepo\MvcMusicStore\WinService\bin\Debug\WinService.InstallLog.
+
+La phase de restauration est terminée.
+
+L'installation traitée avec transaction est terminée.

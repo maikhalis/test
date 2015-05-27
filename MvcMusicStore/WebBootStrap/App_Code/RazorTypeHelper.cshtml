@@ -1,0 +1,9 @@
+﻿@helper PrimaryButtonSmall(string id,string caption)
+{
+    <button id="@id" type="button" class="btn btn-primary btn-sm">@caption</button>
+}
+
+@helper PrimaryButtonSmall(string id, string caption, string style, string size)
+{
+    <button id="@id" type="button" class="btn btn-@style btn-@size">@caption</button>
+}

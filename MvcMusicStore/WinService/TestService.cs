@@ -22,6 +22,8 @@ namespace WinService
         // internal main thread
         private Thread mainThread = null;
 
+        private Thread keepAlive = null;
+
         /// <summary> Basic constructor. </summary>
         public TestService()
             : base("TestService") { }
@@ -31,9 +33,15 @@ namespace WinService
         protected override void OnStart(string[] args)
         {
             currentLogger.Debug("OnStart Enter");
+
+            keepAlive = new Thread(new ThreadStart(this.KeepAliveLoop));
+            keepAlive.Name = "KEEPALIVE";
             mainThread = new Thread(new ThreadStart(this.MainLoop));
             mainThread.Name = "MAIN";
+
+            keepAlive.Start();
             mainThread.Start();
+
             currentLogger.Debug("OnStart Exit");
         }
 
@@ -42,6 +50,10 @@ namespace WinService
         {
             currentLogger.Debug("OnStop Enter");
             this.IsRunning = false;
+            if (this.mainThread.IsAlive)
+                this.mainThread.Abort();
+            if (this.keepAlive.IsAlive)
+                this.keepAlive.Abort();
             currentLogger.Debug("OnStop Exit");
         }
 
@@ -54,10 +66,24 @@ namespace WinService
             {
                 // Do something
                 currentLogger.Debug("Processing...");
-
                 Thread.Sleep(1000);
+
             } while (this.IsRunning);
             currentLogger.Debug("MainLoop Exit");
+        }
+
+        private void KeepAliveLoop()
+        {
+            this.IsRunning = true;
+            currentLogger.Debug("KeepAlive Enter");
+            do
+            {
+                // Do something
+                currentLogger.Debug("KeepAlive...");
+                Thread.Sleep(10000);
+
+            } while (this.IsRunning);
+            currentLogger.Debug("KeepAlive Exit");
         }
     }
 }
